@@ -1,12 +1,14 @@
+import 'package:currency_converter/popUp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:number_display/number_display.dart';
+import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 
 import 'dart:io';
 import "dart:async";
 import "dart:convert";
 
 import 'utilities.dart';
+import 'popUp.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -59,14 +61,42 @@ class _FetchDataState extends State<Homepage> {
     currency.sort();
   }
 
+  MoneyFormatterOutput formatNumbers(double value) {
+    MoneyFormatterOutput display = FlutterMoneyFormatter(
+            amount: value,
+            settings: MoneyFormatterSettings(
+                symbol: _toValue,
+                thousandSeparator: '.',
+                decimalSeparator: ',',
+                symbolAndNumberSeparator: ' ',
+                fractionDigits: 4,
+                compactFormatType: CompactFormatType.short))
+        .output;
+    return display;
+  }
+
+  BuildContext currContext;
+
   Future<void> fetchData() async {
-    String result =
-        await RequestAPIData.fetchData(userValue.text, _toValue, _fromValue);
-    convertedValue.text = result;
+    if (userValue.text == "") {
+      ShowErrorPopUp.showError(currContext, "Empty Value!",
+          "The value that you've provided is empty. Please provide a number berfore converting it to another currency.");
+    }
+    try {
+      double result = await RequestAPIData.fetchData(
+          userValue.text, _toValue, _fromValue, currContext);
+
+      convertedValue.text =
+          convertedValue.text = formatNumbers(result).compactNonSymbol;
+    } on FormatException {
+      ShowErrorPopUp.showError(currContext, "Invalid number!",
+          "Sorry but the value that you've provided are not in number form.");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    currContext = context;
     return new Container(
         margin: EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
         child: new Column(
@@ -74,7 +104,7 @@ class _FetchDataState extends State<Homepage> {
           children: [
             new Container(
                 alignment: Alignment.center,
-                child: new Row(children: <Widget>[
+                child: new Row(children: [
                   new Container(
                       margin: EdgeInsets.fromLTRB(2.0, 0, 16.0, 0),
                       child: new DropdownButton(
@@ -153,23 +183,27 @@ class _FetchDataState extends State<Homepage> {
 }
 
 class RequestAPIData {
-  static Future<String> fetchData(
-      String userValue, String toValue, String fromValue) async {
-    final display = createDisplay(length: 8);
+  static Future<double> fetchData(String userValue, String toValue,
+      String fromValue, BuildContext currContext) async {
     File file;
     String response;
+
     try {
-      file = await DefaultCacheManager().getSingleFile(
-          "https://api.exchangeratesapi.io/latest?base=$fromValue&symbols=$toValue");
+      file = await DefaultCacheManager()
+          .getSingleFile(
+              "https://api.exchangeratesapi.io/latest?base=$fromValue&symbols=$toValue")
+          .timeout(const Duration(seconds: 5));
       response = await file.readAsString();
     } on SocketException {
-      print("No Connection To The Server");
-    } on FormatException {
-      print("error occured");
+      ShowErrorPopUp.showError(currContext, "Connection Error!!!",
+          "No Connection To The Server. Please make sure you're connected to the internet or try again later.");
+    } on TimeoutException {
+      ShowErrorPopUp.showError(currContext, "Internet Connection Error!!!",
+          "There's something wrong with your internet connection. Please try again later.");
     }
     Map<String, dynamic> data = json.decode(response);
     final double rates = data["rates"][toValue];
     final double result = rates * double.parse(userValue);
-    return display(result);
+    return result;
   }
 }

@@ -12,10 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  path_provider: ^1.6.11
   http: ^0.12.2
-  number_display: ^2.3.0
   flutter_cache_manager: ^1.4.1
+  flutter_money_formatter: ^0.8.3
+  url_launcher: ^5.5.0
 
   cupertino_icons: ^0.1.3
 

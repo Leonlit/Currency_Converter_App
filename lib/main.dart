@@ -1,3 +1,4 @@
+import 'package:currency_converter/utilities.dart';
 import 'package:flutter/material.dart';
 
 import 'mainPage.dart';
@@ -7,8 +8,6 @@ import 'navMenu.dart';
 void main() => runApp(CurrencyConverter());
 
 class CurrencyConverter extends StatelessWidget {
-  final bgColor = Colors.yellow[600];
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +19,7 @@ class CurrencyConverter extends StatelessWidget {
         title: Text("Currency Converter"),
         titleSpacing: 1.2,
         centerTitle: true,
-        backgroundColor: bgColor,
+        backgroundColor: AppTheme.themeBg,
       ),
       body: Center(child: Homepage()),
     ));

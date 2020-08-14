@@ -12,10 +12,20 @@ class AppTheme {
     letterSpacing: 2.0,
   );
 
-  static final headerFont = new TextStyle(
+  static final menuHeaderFont = new TextStyle(
     fontSize: 24,
     letterSpacing: 2.0,
     color: Colors.white,
+  );
+
+  static final pageHeaderFont = new TextStyle(
+    fontSize: 24,
+    letterSpacing: 2.0,
+  );
+
+  static final pageFont = new TextStyle(
+    fontSize: 17,
+    letterSpacing: 2.0,
   );
 
   static final btnFont = new TextStyle(
@@ -26,5 +36,4 @@ class AppTheme {
   );
 
   static final themeBg = Colors.yellow[600];
-  static final btnBg = Colors.blueGrey[600];
 }
