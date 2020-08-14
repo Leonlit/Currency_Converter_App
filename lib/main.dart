@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'mainWidget.dart';
+
+import 'mainPage.dart';
+import 'navMenu.dart';
 
 //the main function for starting the app
 void main() => runApp(CurrencyConverter());
@@ -11,6 +13,9 @@ class CurrencyConverter extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
+      drawer: Drawer(
+        child: NavMenu(),
+      ),
       appBar: AppBar(
         title: Text("Currency Converter"),
         titleSpacing: 1.2,
@@ -21,9 +26,3 @@ class CurrencyConverter extends StatelessWidget {
     ));
   }
 }
-
-
-//check for data in storage cache
-//if the api data last fetch time is before today's 14:15
-//if the last fetch time < 14:15 use back cached data (file maybe)
-//if not fetch the data then store into the file

@@ -1,9 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:http/http.dart' as http;
 import 'package:number_display/number_display.dart';
+
+import 'dart:io';
 import "dart:async";
 import "dart:convert";
 
@@ -163,7 +162,6 @@ class RequestAPIData {
       file = await DefaultCacheManager().getSingleFile(
           "https://api.exchangeratesapi.io/latest?base=$fromValue&symbols=$toValue");
       response = await file.readAsString();
-      print(response);
     } on SocketException {
       print("No Connection To The Server");
     } on FormatException {
