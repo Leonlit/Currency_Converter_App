@@ -1,9 +1,10 @@
-import 'package:currency_converter/utilities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:linkable/linkable.dart';
 
 import 'navMenu.dart';
+import 'utilities.dart';
+
 
 class AboutPage extends StatelessWidget {
   @override
@@ -40,7 +41,7 @@ class AboutPageWidget extends StatelessWidget {
             margin: EdgeInsets.all(10.0),
             child: Linkable(
               text:
-                  "This app is created so that user could convert an amount of money from a currency to another currency with ease. If you're interested in the source code you could find the link in the navigation menu or simple press this link \nhttps://github.com/Leonlit/Currency_Converter_App\n\nFeel free to contact me if you have any suggestions, questions, or critics \nemail: \nleonlit123@gmail.com\nreddit: \nhttps://www.reddit.com/user/scrolion\ntwitter: \nhttps://twitter.com/leonlit",
+                  "This app is created so that user could convert an amount of money from a currency to another currency with ease. If you're interested in the source code, you could find the link in the navigation menu or simple press this link\n\nhttps://github.com/Leonlit/Currency_Converter_App\n\nFeel free to contact me if you have any suggestions, questions, or critics \n\nemail: \nleonlit123@gmail.com\n\nreddit: \nhttps://www.reddit.com/user/scrolion\n\ntwitter: \nhttps://twitter.com/leonlit",
               textAlign: TextAlign.left,
               style: AppTheme.pageFont,
             )),

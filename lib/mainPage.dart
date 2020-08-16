@@ -1,4 +1,3 @@
-import 'package:currency_converter/popUp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';

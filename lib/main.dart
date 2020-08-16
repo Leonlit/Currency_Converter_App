@@ -1,8 +1,8 @@
-import 'package:currency_converter/utilities.dart';
 import 'package:flutter/material.dart';
 
 import 'mainPage.dart';
 import 'navMenu.dart';
+import 'utilities.dart';
 
 //the main function for starting the app
 void main() => runApp(CurrencyConverter());

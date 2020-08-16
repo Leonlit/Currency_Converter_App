@@ -1,5 +1,3 @@
-import 'package:currency_converter/aboutPage.dart';
-import 'package:currency_converter/popUp.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -7,6 +5,7 @@ import 'utilities.dart';
 import 'main.dart';
 import 'aboutPage.dart';
 import 'popUp.dart';
+import 'LicensePopUp.dart';
 
 class NavMenu extends StatefulWidget {
   @override
@@ -45,7 +44,6 @@ class _NavMenuState extends State<NavMenu> {
                       style: AppTheme.menuFont,
                     ),
                     onTap: () {
-                      print("clicked item 1");
                       Navigator.of(context).pop();
                       Navigator.push(
                         context,
@@ -60,7 +58,6 @@ class _NavMenuState extends State<NavMenu> {
                       style: AppTheme.menuFont,
                     ),
                     onTap: () {
-                      print("clicked item 2");
                       Navigator.of(context).pop();
                       Navigator.push(
                         context,
@@ -75,7 +72,23 @@ class _NavMenuState extends State<NavMenu> {
                       style: AppTheme.menuFont,
                     ),
                     onTap: lauchURL,
-                  )
+                  ),
+                  ListTile(
+                    title: Text(
+                      'License',
+                      style: AppTheme.menuFont,
+                    ),
+                    onTap: () {
+                      showAboutDialog(
+                        applicationIcon: FlutterLogo(),
+                        applicationName: 'Currency Converter',
+                        applicationVersion: 'July 2020',
+                        applicationLegalese: '© 2020 Leonlit',
+                        children: LicensePopUp.aboutBoxChildren(context),
+                        context: context,
+                      );
+                    },
+                  ),
                 ]).toList()),
       ],
     );
