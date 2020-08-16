@@ -1,6 +1,7 @@
 import 'package:currency_converter/utilities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:linkable/linkable.dart';
 
 import 'navMenu.dart';
 
@@ -36,13 +37,13 @@ class AboutPageWidget extends StatelessWidget {
               style: AppTheme.pageHeaderFont,
             )),
         new Container(
-          margin: EdgeInsets.all(10.0),
-          child: new Text(
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-            textAlign: TextAlign.justify,
-            style: AppTheme.pageFont,
-          ),
-        ),
+            margin: EdgeInsets.all(10.0),
+            child: Linkable(
+              text:
+                  "This app is created so that user could convert an amount of money from a currency to another currency with ease. If you're interested in the source code you could find the link in the navigation menu or simple press this link \nhttps://github.com/Leonlit/Currency_Converter_App\n\nFeel free to contact me if you have any suggestions, questions, or critics \nemail: \nleonlit123@gmail.com\nreddit: \nhttps://www.reddit.com/user/scrolion\ntwitter: \nhttps://twitter.com/leonlit",
+              textAlign: TextAlign.left,
+              style: AppTheme.pageFont,
+            )),
       ]),
     );
   }

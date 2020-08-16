@@ -8,8 +8,14 @@ import 'main.dart';
 import 'aboutPage.dart';
 import 'popUp.dart';
 
-class NavMenu extends StatelessWidget {
+class NavMenu extends StatefulWidget {
+  @override
+  _NavMenuState createState() => _NavMenuState();
+}
+
+class _NavMenuState extends State<NavMenu> {
   BuildContext currContext;
+
   @override
   Widget build(BuildContext context) {
     currContext = context;
@@ -76,7 +82,7 @@ class NavMenu extends StatelessWidget {
   }
 
   void lauchURL() async {
-    const url = 'https://github.com/Leonlit/Currency_Converter_App';
+    final url = 'https://github.com/Leonlit/Currency_Converter_App';
     if (await canLaunch(url)) {
       await launch(url);
     } else {

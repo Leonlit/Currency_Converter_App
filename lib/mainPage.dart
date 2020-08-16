@@ -10,16 +10,21 @@ import "dart:convert";
 import 'utilities.dart';
 import 'popUp.dart';
 
+//the main page of the app
 class Homepage extends StatefulWidget {
   @override
   _FetchDataState createState() => _FetchDataState();
 }
 
 class _FetchDataState extends State<Homepage> {
+  //controller for the two text fields
   final userValue = TextEditingController(),
       convertedValue = TextEditingController();
 
+  //initial value for the currency dropdown
   String _fromValue = "USD", _toValue = "USD";
+
+  //the array of available currency for conversion
   static final List<String> currency = [
     "CAD",
     "HKD",
@@ -61,15 +66,15 @@ class _FetchDataState extends State<Homepage> {
     currency.sort();
   }
 
+  //format the number so that
   MoneyFormatterOutput formatNumbers(double value) {
     MoneyFormatterOutput display = FlutterMoneyFormatter(
             amount: value,
             settings: MoneyFormatterSettings(
                 symbol: _toValue,
-                thousandSeparator: '.',
-                decimalSeparator: ',',
-                symbolAndNumberSeparator: ' ',
-                fractionDigits: 4,
+                thousandSeparator: ',',
+                decimalSeparator: '.',
+                fractionDigits: 3,
                 compactFormatType: CompactFormatType.short))
         .output;
     return display;
@@ -87,7 +92,7 @@ class _FetchDataState extends State<Homepage> {
           userValue.text, _toValue, _fromValue, currContext);
 
       convertedValue.text =
-          convertedValue.text = formatNumbers(result).compactNonSymbol;
+          convertedValue.text = formatNumbers(result).nonSymbol;
     } on FormatException {
       ShowErrorPopUp.showError(currContext, "Invalid number!",
           "Sorry but the value that you've provided are not in number form.");
@@ -171,7 +176,7 @@ class _FetchDataState extends State<Homepage> {
                     textAlignVertical: TextAlignVertical.center,
                     controller: convertedValue,
                     style: AppTheme.fieldFont,
-                    enabled: false,
+                    readOnly: true,
                     decoration: InputDecoration(
                       hintText: "Converted Value",
                     ),
