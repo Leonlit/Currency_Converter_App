@@ -9,6 +9,7 @@
 .history
 .svn/
 .secret/
+secret/
 
 # IntelliJ related
 *.iml
