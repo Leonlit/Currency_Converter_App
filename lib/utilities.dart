@@ -11,27 +11,36 @@ class AppTheme {
 
   //The style for menu items font
   static final menuFont = new TextStyle(
-    fontSize: 22,
+    fontSize: 20,
     letterSpacing: 2.0,
+    fontWeight: FontWeight.w700,
+    fontFamily: "Merriweather",
   );
 
   //the text style for menu headers
   static final menuHeaderFont = new TextStyle(
-    fontSize: 24,
+    fontSize: 26,
     letterSpacing: 2.0,
+    fontWeight: FontWeight.w900,
+    fontFamily: "Merriweather",
     color: Colors.white,
   );
 
   //the text style for page header
   static final pageHeaderFont = new TextStyle(
     fontSize: 24,
+    fontWeight: FontWeight.w900,
+    fontStyle: FontStyle.italic,
     letterSpacing: 2.0,
+    fontFamily: "Merriweather",
   );
 
   //the text style for page font
   static final pageFont = new TextStyle(
     fontSize: 17,
     letterSpacing: 2.0,
+    fontFamily: "Merriweather",
+    fontWeight: FontWeight.w400,
   );
 
   //text style for buttons font

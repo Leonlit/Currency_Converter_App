@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:linkable/linkable.dart';
 
 class LicensePopUp {
   static List<Widget> aboutBoxChildren(BuildContext context) {
@@ -12,13 +13,18 @@ class LicensePopUp {
         children: <TextSpan>[
           TextSpan(
               style: textStyle,
-              text: 'Currency Converter is an utility app where it lets user'
-                  ' perform currency conversion from one currency to another.'
-                  ' This application\'s source code has been open sourced, You '
-                  'can get it at \n\n'),
+              text:
+                  'Currency Converter is a utility app where it lets the user perform '
+                  ' currency conversion from one currency to another. This application\'s '
+                  'source code is open-source, You can get it at \n\n'),
           TextSpan(
               style: textStyle.copyWith(color: Theme.of(context).accentColor),
-              text: 'https://github.com/Leonlit/Currency_Converter_App'),
+              children: [
+                new WidgetSpan(
+                    child: Linkable(
+                        text:
+                            'https://github.com/Leonlit/Currency_Converter_App'))
+              ]),
           TextSpan(style: textStyle, text: '.'),
         ],
       ))

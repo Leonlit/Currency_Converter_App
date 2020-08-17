@@ -75,7 +75,7 @@ class _NavMenuState extends State<NavMenu> {
                   ),
                   ListTile(
                     title: Text(
-                      'License',
+                      'Licenses',
                       style: AppTheme.menuFont,
                     ),
                     onTap: () {
