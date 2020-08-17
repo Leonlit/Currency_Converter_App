@@ -8,6 +8,7 @@ import "dart:convert";
 
 import 'utilities.dart';
 import 'popUp.dart';
+import 'navMenu.dart';
 
 //the main page of the app
 class Homepage extends StatefulWidget {
@@ -101,88 +102,99 @@ class _FetchDataState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     currContext = context;
-    return new Container(
-        margin: EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            new Container(
-                alignment: Alignment.center,
-                child: new Row(children: [
-                  new Container(
-                      margin: EdgeInsets.fromLTRB(2.0, 0, 16.0, 0),
-                      child: new DropdownButton(
-                          autofocus: true,
-                          focusColor: Colors.grey[300],
-                          value: _fromValue,
-                          style: AppTheme.btnFont,
-                          onChanged: (String newValue) => {
-                                setState(() => {
-                                      _fromValue = newValue,
-                                    })
-                              },
-                          items: [
-                            for (String i in currency)
-                              DropdownMenuItem(
-                                value: i,
-                                child: Text('$i'),
-                              )
-                          ])),
-                  Expanded(
-                      child: new TextField(
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                    controller: userValue,
-                    style: AppTheme.fieldFont,
-                    decoration: InputDecoration(
-                      hintText: 'Amount Value',
-                    ),
-                  ))
-                ])),
-            new Container(
-                margin: const EdgeInsets.all(20),
-                child: FlatButton(
-                  color: AppTheme.themeBg,
-                  onPressed: fetchData,
-                  child: new Text(
-                    "Convert",
-                    style: AppTheme.fieldFont,
-                  ),
-                )),
-            new Container(
-                alignment: Alignment.center,
-                child: new Row(children: <Widget>[
-                  new Container(
-                      margin: EdgeInsets.fromLTRB(2.0, 0, 16.0, 0),
-                      child: new DropdownButton(
-                          value: _toValue,
-                          style: AppTheme.btnFont,
-                          onChanged: (String newValue) => {
-                                setState(() => {
-                                      _toValue = newValue,
-                                    })
-                              },
-                          items: [
-                            for (String i in currency)
-                              DropdownMenuItem(
-                                value: i,
-                                child: Text('$i'),
-                              )
-                          ])),
-                  Expanded(
-                      child: new TextField(
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                    controller: convertedValue,
-                    style: AppTheme.fieldFont,
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      hintText: "Converted Value",
-                    ),
-                  )),
-                ]))
-          ],
-        ));
+    return Scaffold(
+        drawer: Drawer(
+          child: NavMenu(),
+        ),
+        appBar: AppBar(
+          title: Text("Currency Converter"),
+          titleSpacing: 1.2,
+          centerTitle: true,
+          backgroundColor: AppTheme.themeBg,
+        ),
+        body: Center(
+            child: new Container(
+                margin: EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+                child: new Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    new Container(
+                        alignment: Alignment.center,
+                        child: new Row(children: [
+                          new Container(
+                              margin: EdgeInsets.fromLTRB(2.0, 0, 16.0, 0),
+                              child: new DropdownButton(
+                                  autofocus: true,
+                                  focusColor: Colors.grey[300],
+                                  value: _fromValue,
+                                  style: AppTheme.btnFont,
+                                  onChanged: (String newValue) => {
+                                        setState(() => {
+                                              _fromValue = newValue,
+                                            })
+                                      },
+                                  items: [
+                                    for (String i in currency)
+                                      DropdownMenuItem(
+                                        value: i,
+                                        child: Text('$i'),
+                                      )
+                                  ])),
+                          Expanded(
+                              child: new TextField(
+                            textAlign: TextAlign.center,
+                            textAlignVertical: TextAlignVertical.center,
+                            controller: userValue,
+                            style: AppTheme.fieldFont,
+                            decoration: InputDecoration(
+                              hintText: 'Amount Value',
+                            ),
+                          ))
+                        ])),
+                    new Container(
+                        margin: const EdgeInsets.all(20),
+                        child: FlatButton(
+                          color: AppTheme.themeBg,
+                          onPressed: fetchData,
+                          child: new Text(
+                            "Convert",
+                            style: AppTheme.fieldFont,
+                          ),
+                        )),
+                    new Container(
+                        alignment: Alignment.center,
+                        child: new Row(children: <Widget>[
+                          new Container(
+                              margin: EdgeInsets.fromLTRB(2.0, 0, 16.0, 0),
+                              child: new DropdownButton(
+                                  value: _toValue,
+                                  style: AppTheme.btnFont,
+                                  onChanged: (String newValue) => {
+                                        setState(() => {
+                                              _toValue = newValue,
+                                            })
+                                      },
+                                  items: [
+                                    for (String i in currency)
+                                      DropdownMenuItem(
+                                        value: i,
+                                        child: Text('$i'),
+                                      )
+                                  ])),
+                          Expanded(
+                              child: new TextField(
+                            textAlign: TextAlign.center,
+                            textAlignVertical: TextAlignVertical.center,
+                            controller: convertedValue,
+                            style: AppTheme.fieldFont,
+                            readOnly: true,
+                            decoration: InputDecoration(
+                              hintText: "Converted Value",
+                            ),
+                          )),
+                        ]))
+                  ],
+                ))));
   }
 }
 

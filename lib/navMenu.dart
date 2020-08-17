@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'utilities.dart';
-import 'main.dart';
-import 'aboutPage.dart';
 import 'popUp.dart';
 import 'LicensePopUp.dart';
+import 'main.dart';
 
 class NavMenu extends StatefulWidget {
   @override
@@ -44,12 +43,7 @@ class _NavMenuState extends State<NavMenu> {
                       style: AppTheme.menuFont,
                     ),
                     onTap: () {
-                      Navigator.of(context).pop();
-                      Navigator.push(
-                        context,
-                        new MaterialPageRoute(
-                            builder: (context) => new CurrencyConverter()),
-                      );
+                      CurrencyConverter.goToPage(context, "/");
                     },
                   ),
                   ListTile(
@@ -58,20 +52,8 @@ class _NavMenuState extends State<NavMenu> {
                       style: AppTheme.menuFont,
                     ),
                     onTap: () {
-                      Navigator.of(context).pop();
-                      Navigator.push(
-                        context,
-                        new MaterialPageRoute(
-                            builder: (context) => new AboutPage()),
-                      );
+                      CurrencyConverter.goToPage(context, "/aboutPage");
                     },
-                  ),
-                  ListTile(
-                    title: Text(
-                      'Source Code',
-                      style: AppTheme.menuFont,
-                    ),
-                    onTap: lauchURL,
                   ),
                   ListTile(
                     title: Text(
@@ -88,6 +70,13 @@ class _NavMenuState extends State<NavMenu> {
                         context: context,
                       );
                     },
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Source Code',
+                      style: AppTheme.menuFont,
+                    ),
+                    onTap: lauchURL,
                   ),
                 ]).toList()),
       ],

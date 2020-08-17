@@ -6,6 +6,8 @@ class AppTheme {
   static final fieldFont = new TextStyle(
     fontSize: 20,
     letterSpacing: 2.0,
+    fontFamily: "Merriweather",
+    fontWeight: FontWeight.w400,
     color: Colors.grey[600],
   );
 
@@ -48,7 +50,8 @@ class AppTheme {
     fontSize: 20.0,
     letterSpacing: 2.0,
     color: Colors.yellow[600],
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w900,
+    fontFamily: "Merriweather",
   );
 
   //theme color for the app
